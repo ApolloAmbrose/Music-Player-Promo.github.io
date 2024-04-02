@@ -10,3 +10,5 @@
  - [] get sound effects
 
  - [x] music player an pictures added
+
+ - [] child template
