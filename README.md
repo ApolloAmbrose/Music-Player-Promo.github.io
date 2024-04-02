@@ -5,10 +5,10 @@
 
  - [x] completed index file
 
- - [] add music
+ - [ ] add music
 
- - [] get sound effects
+ - [ ] get sound effects
 
  - [x] music player an pictures added
 
- - [] child template
+ - [ ] child template
