@@ -3,15 +3,10 @@
 
  - [x] i dont know
 
-https://thumbs.dreamstime.com/z/music-player-unique-neomorphic-purple-design-kit-audio-app-tracklist-navigation-graphic-equalizer-screens-listening-ui-ux-188497960.jpg?w=992
+ - [x] completed index file
 
+ - [] add music
 
+ - [] get sound effects
 
-
-
-
-
-
-
-
-[] child template
+ - [x] music player an pictures added
