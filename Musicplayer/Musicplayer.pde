@@ -1,6 +1,8 @@
 // Global Variables
 int appWidth, appHeight;
-int backgroundX, backgroundY, backgroundWidth, backgroundHeight;
+float backgroundX, backgroundY, backgroundWidth, backgroundHeight;
+float albumCoverX,albumCoverY, albumCoverWidth, albumCoverHeight;
+float PlayButtonX,PlayButtonY, PlayButtonWidth, PlayButtonHeight
 //
 void setup()  {
   println("HelloWorld");
@@ -12,8 +14,8 @@ void setup()  {
   //Display: CANVAS
   size(400, 500); //width, height 
   fullScreen(); //displayWidth, displayHeight
-  appWidth = width;
-  appHeight = height;
+  appWidth = displayWidth;
+  appHeight = displayHeight;
   //Landscape is HARDCODED
   //println(appWidth, appHeight);
   //Display Geometry: Landscape, Portrait, Square
@@ -21,16 +23,30 @@ String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "5 secs 
 println(displayInstructions);
   //
   //Poplulate
-  backgroundX = appWidth;
-  backgroundY = appHeight;
+  backgroundX = appWidth*0;
+  backgroundY = appHeight*0;
   backgroundWidth  = appWidth;
   backgroundHeight = appHeight;
+  albumCoverX = appWidth*0;
+  albumCoverY = appHeight;
+  albumCoverWidth = appWidth;
+  albumCoverHeight = appHeight;
   //Layout DIVs
  //rect(X, Y, Width, Height);
    rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
    int centerX = appWidth*1/2;
    int centerY = appHeight*1/2;
   rect(centerX*1/2, centerY*1/2, appWidth*1/2, appHeight*1/2);
+  
+  rect(albumCoverX,albumCoverY, albumCoverWidth, albumCoverHeight);
+  
+  rect(FastFowardX,FastFowardY, FastFowardWidth, FastFowardHeight);
+  rect(RewindX,RewindY, RewindWidth, RewindHeight);
+  rect(PauseX,PauseY, PauseWidth, PauseHeight);
+  rect(volumeX,volumeY, volumeWidth, volumeHeight);
+  rect(timeprogressX,timeprogressY, timeprogressWidth, timeprogressHeight);
+  rect(RestartX,RestartY, RestartWidth, RestartyHeight);
+  rect(PlayButtonX,PlayButtonY, PlayButtonWidth, PlayButtonHeight);
 } //End setup
 //
 void draw() {
