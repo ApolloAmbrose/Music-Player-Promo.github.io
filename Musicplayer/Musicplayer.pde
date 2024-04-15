@@ -2,7 +2,10 @@
 int appWidth, appHeight;
 float backgroundX, backgroundY, backgroundWidth, backgroundHeight;
 float albumCoverX,albumCoverY, albumCoverWidth, albumCoverHeight;
-float PlayButtonX,PlayButtonY, PlayButtonWidth, PlayButtonHeight
+float PlayButtonX,PlayButtonY, PlayButtonWidth, PlayButtonHeight;
+//
+color backgroundColour, darkBackground, whiteBackground;
+Boolean whiteMode=false;
 //
 void setup()  {
   println("HelloWorld");
@@ -23,14 +26,14 @@ String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "5 secs 
 println(displayInstructions);
   //
   //Poplulate
-  backgroundX = appWidth*0;
-  backgroundY = appHeight*0;
-  backgroundWidth  = appWidth;
-  backgroundHeight = appHeight;
-  albumCoverX = appWidth*0;
-  albumCoverY = appHeight;
-  albumCoverWidth = appWidth;
-  albumCoverHeight = appHeight;
+  backgroundX = appWidth*1/3;
+  backgroundY = appHeight*1/2;
+  backgroundWidth  = appWidth*1/5;
+  backgroundHeight = appHeight*1/3;
+  albumCoverX = appWidth*1/6;
+  albumCoverY = appHeight*1/5;
+  
+
   //Layout DIVs
  //rect(X, Y, Width, Height);
    rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
@@ -39,7 +42,7 @@ println(displayInstructions);
   rect(centerX*1/2, centerY*1/2, appWidth*1/2, appHeight*1/2);
   
   rect(albumCoverX,albumCoverY, albumCoverWidth, albumCoverHeight);
-  
+  /*
   rect(FastFowardX,FastFowardY, FastFowardWidth, FastFowardHeight);
   rect(RewindX,RewindY, RewindWidth, RewindHeight);
   rect(PauseX,PauseY, PauseWidth, PauseHeight);
@@ -47,9 +50,20 @@ println(displayInstructions);
   rect(timeprogressX,timeprogressY, timeprogressWidth, timeprogressHeight);
   rect(RestartX,RestartY, RestartWidth, RestartyHeight);
   rect(PlayButtonX,PlayButtonY, PlayButtonWidth, PlayButtonHeight);
+  */
+  //Var Population
+  darkBackground =  0; //Gray Scale, much smaller than COLOR  
+  whiteBackground = 255; //Gray Scale, much smaller than COLOR
+  //whiteMode = true;
+  //if ( hour() >=9 && hour()<=17 ) backgroundColour = whiteBackground ;
+  //if ( hour() <9 && hour()>17 ) backgroundColour = darkBackground ;
+  if (hour() >=9 && hour()<=17) {backgroundColour = whiteBackground;} else {backgroundColour = darkBackground;}
+  //
 } //End setup
 //
 void draw() {
+  background(backgroundColour); //Grayscae
+  //rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
 } //End draw
 //
 void keyPressed() {
