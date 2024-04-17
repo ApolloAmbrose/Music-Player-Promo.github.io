@@ -4,10 +4,10 @@ float backgroundX, backgroundY, backgroundWidth, backgroundHeight;
 float albumCoverX,albumCoverY, albumCoverWidth, albumCoverHeight;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 //
-color backgroundColour, darkBackground, whiteBackground;
+color backgroundColour, darkBackground=0, whiteBackground=255; 
 color foregroundColour;
 color white=255, yellow=#FFFF00; //Hexidecimal, see Tools / Colour selector
-Boolean whiteMode=true;
+Boolean whiteMode=false;
 //
 void setup()  {
   println("HelloWorld");
@@ -61,7 +61,7 @@ println(displayInstructions);
   //Var Population
   //if ( hour() >=9 && hour()<=17 ) backgroundColour = whiteBackground ;
   //if ( hour() <9 && hour()>17 ) backgroundColour = darkBackground ;
-if ( whiteMode==true && hour()>=9 && hour()<=17 ) {
+if ( whiteMode==false && hour()>=9 && hour()<=17 ) {
     backgroundColour = whiteBackground;
     foregroundColour = #FFFFFF;
   } else {
@@ -82,12 +82,13 @@ void draw() {
 void keyPressed() { //Listener
    if (key=='Q'|| key=='q') exit();
    if (keyCode==CODED && keyCode==UP) exit();
+   if (key=='W'|| key=='w') ;
 } //End keyPressed
 //
-void mousePressed () { //Listener
-  //Quit
-  if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY &&  mouseY>quitButtonY+quitButtonHeight )
-  {
+void mousePressed() { //Listener
+  //QUIT
+  if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight )
+  { 
     exit();
   }
 } //End mousePressed
