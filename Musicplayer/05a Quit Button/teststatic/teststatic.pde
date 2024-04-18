@@ -6,6 +6,8 @@
 //
 //Global Variables
 float titleX, titleY, titleWidth, titleHeight;
+PFont titleFont;
+String title="Wahoo!";
 //
 //Display Geoemtry, Display Orientation: landscape, portrait, square
 fullScreen();
@@ -24,10 +26,14 @@ titleHeight = appHeight*1/10;
 //Single Executed Code: Font SETUP
 //Fonts from OS (Operating System)
 String[] fontList = PFont.list(); //To list all fonts available on OS
-printArray(fontList);
+printArray(fontList); //For listing all possible fonts to choose from, then createFont
+titleFont = createFont("Harrington", 55);
+// Tools / Create Font / Find Font / Use size field / Do not press "OK", known bug
 //
 //DIVs & rect()s: rect(X, Y, Width, Height);
 rect(titleX, titleY, titleWidth, titleHeight);
 //rect(X, Y, Width, Height); //footer
 //
 //Repeated Code: draw()ing text
+textFont(titlefont, 20);
+text(title, titleX, titleY, titleWidth, titleHeight);
