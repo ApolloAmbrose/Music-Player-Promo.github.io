@@ -6,7 +6,7 @@ float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 //
 color backgroundColour, darkBackground=0, whiteBackground=255; 
 color foregroundColour;
-color white=255, yellow=#FFFF00; //Hexidecimal, see Tools / Colour selector
+color white=255, yellow=#FFFF00, black=0, purple=#FF00FF; //Hexidecimal, see Tools / Colour selector
 Boolean whiteMode=false;
 //
 void setup()  {
@@ -61,7 +61,8 @@ println(displayInstructions);
   //Var Population
   //if ( hour() >=9 && hour()<=17 ) backgroundColour = whiteBackground ;
   //if ( hour() <9 && hour()>17 ) backgroundColour = darkBackground ;
-if ( whiteMode==false && hour()>=9 && hour()<=17 ) {
+  println(whiteMode);
+if ( whiteMode==true && hour()>=9 && hour()<=17 ) {
     backgroundColour = whiteBackground;
     foregroundColour = #FFFFFF;
   } else {
@@ -76,7 +77,21 @@ if ( whiteMode==false && hour()>=9 && hour()<=17 ) {
 void draw() {
   background(backgroundColour);
   fill(foregroundColour);
+  //
+  //Quit Button
+  //fill(purple);
+  //if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight )fill(yellow);
+  if (mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight) 
+     rect(quitButtonX+quitButtonWodth*1/7, quitButtonY, quitButtonWidth*5/7, quitButtonHeight);
+     fill(foregroundColour); //Reset Default
+     fill(yellow);
+  } else {
+    fill(purple);
+  }
   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
+  fill(foregroundColour);
+  println(mouseX, mouseY);
+//
 } //End draw
 //
 void keyPressed() { //Listener
