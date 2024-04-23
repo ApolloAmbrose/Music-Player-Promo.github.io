@@ -1,4 +1,16 @@
+
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 // Global Variables
+Minim minim; //creates object to access all functions
+AudioPlayer soundEffects1;
+AudioPlayer playlist1; 
+//
 int appWidth, appHeight;
 float backgroundX, backgroundY, backgroundWidth, backgroundHeight;
 float albumCoverX,albumCoverY, albumCoverWidth, albumCoverHeight;
@@ -21,13 +33,29 @@ void setup()  {
   fullScreen(); //displayWidth, displayHeight
   appWidth = displayWidth;
   appHeight = displayHeight;
-  //Landscape is HARDCODED
-  //println(appWidth, appHeight);
-  //Display Geometry: Landscape, Portrait, Square
-String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "5 secs left to turn your phone before self destructuion" ;
-println(displayInstructions);
+//Landscape is HARDCODED
+  String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "self desruction in 5 seconds";
+  println(displayInstructions);
   //
-  //Poplulate
+  minim = new minim(this);
+  String extension = ".mp3";
+  String quitButtonSound = "CarDoorClosing"
+  String pathwaySoundEffects = "../AudioSound effects"; //Relative Path
+  //println( pathwaySoundEffects+quitButtonSound+extension );
+  String path = sketchPath( pathwaySoundEffects + quitButtonSound + extension ); //Absolute Path
+  //println( path );
+  soundEffects1 = minim.loadFile( path );
+  //playList1 = minim.loadFile( path );
+  //
+  //Fonts from OS (Operating System)
+  String[] fontList = PFont.list(); //To list all fonts available on OS
+  printArray(fontList); //For listing all possible fonts to choose from, then createFont
+  size = ( appWidth > appHeight ) ? appHeight : appWidth ; // Font size starts with smaller dimension
+  generalFont = createFont("Harrington", size);
+  //bottomFont = createFont("", size); //Note: more than one font allowed
+  // Tools / Create Font / Find Font / Use size field / Do not press "OK", known bug
+  //
+  //Population
   backgroundX = appWidth*1/3;
   backgroundY = appHeight*1/2;
   backgroundWidth  = appWidth*1/5;
@@ -71,7 +99,9 @@ if ( whiteMode==true && hour()>=9 && hour()<=17 ) {
     if ( hour()>=9 && hour()<=17 ) foregroundColour = white;
   }
   //
-
+  soundEffects1.loop(1); 
+  delay(2500); //parameter: milliseconds
+  exit();
 } //End setup
 //
 void draw() {
@@ -95,7 +125,7 @@ void draw() {
   textAlign( CENTER, CENTER ); //Align X&Y, see Processing.org / Reference
   //Values: [ LEFT | CENTER | RIGHT ] & [ TOP | CENTER | BOTTOM | BASELINE ]
    size = appHeight*1/23 // Var based on ratio of display
-  textFont(generalFont, size);*1/23
+  textFont(generalFont, size);*1/23;
   text(quit, quitButtonX+quitButtonWidth*1/7, quitButtonY+quitButtonHeight*1/7, quitButtonWidth*5/7, quitButtonHeight*5/7); //Inside rect() above
   fill(foregroundColour); //Resetting the Defaults
   //
