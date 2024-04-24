@@ -39,8 +39,8 @@ void setup()  {
   //
   minim = new minim(this);
   String extension = ".mp3";
-  String quitButtonSound = "CarDoorClosing"
-  String pathwaySoundEffects = "../AudioSound effects"; //Relative Path
+  String quitButtonSound = "CarDoorClosing";
+  String pathwaySoundEffects = "../AudioSound effects"; //Relative Path;
   //println( pathwaySoundEffects+quitButtonSound+extension );
   String path = sketchPath( pathwaySoundEffects + quitButtonSound + extension ); //Absolute Path
   //println( path );
@@ -124,7 +124,7 @@ void draw() {
   fill(foregroundColour); //Ink
   textAlign( CENTER, CENTER ); //Align X&Y, see Processing.org / Reference
   //Values: [ LEFT | CENTER | RIGHT ] & [ TOP | CENTER | BOTTOM | BASELINE ]
-   size = appHeight*1/23 // Var based on ratio of display
+   size = appHeight*1/23; // Var based on ratio of display
   textFont(generalFont, size);*1/23;
   text(quit, quitButtonX+quitButtonWidth*1/7, quitButtonY+quitButtonHeight*1/7, quitButtonWidth*5/7, quitButtonHeight*5/7); //Inside rect() above
   fill(foregroundColour); //Resetting the Defaults
@@ -144,8 +144,15 @@ void keyPressed() { //Listener
 void mousePressed() { //Listener
   if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight )
   { 
-    exit();
+    soundeffect_1();
   }
 } //End mousePressed
 //
+void soundeffect_1() {
+  int loop0nce = 0;
+  int timeForSoundEffect1 = 2650; //parameter: milliseconds
+soundEffects1.loop(loop0nce);
+delay(timeForSoundEffect1); 
+exit();
+}  // End soundeffect_1()
 // End MAIN Program
