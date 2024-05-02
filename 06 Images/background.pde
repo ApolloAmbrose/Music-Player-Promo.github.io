@@ -8,8 +8,8 @@ Boolean lightMode=true, dayMode=false, nightMode=false;
 void setup() {
   //Display
   fullScreen();
-  appWidth = displayWidth;
-  appHeight = displayHeight;
+  appWidth = width; //displayWidth
+  appHeight = height; //displayHeight;
   //Population
   backgroundImageX = appWidth*0;
   backgroundImageY = appHeight*0;
@@ -36,7 +36,7 @@ void setup() {
 void draw() {
   background(255); //Day Mode, Light Mode ON / OFF, WHITE allowed
   //NOTE: lightMode ON = max saturation
-  if ( lightMode == true ) {
+  if ( lightMode == false ) {
     brightness = 255;
   } else {
     brightness = 64; //USER Preference: lowest brightness
@@ -52,7 +52,7 @@ void mousePressed() {
 //
 void keyPressed() { //Key Board Short Cuts for Mouse Pressing Prototyping
   if ( key=='W' || key=='w' ) { //Day Mode, White Light Containing Blue Colour
-    if (  lightMode == false ) {
+    if (  lightMode == true ) {
       lightMode = true;  //Light Mode ON
     } else {
       lightMode = false; //Dark Mode ON
