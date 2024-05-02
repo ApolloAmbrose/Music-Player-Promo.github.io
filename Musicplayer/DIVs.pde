@@ -30,7 +30,6 @@ void drawRects() { //Layout DIVs
   //rect(centerX*1/2, centerY*1/2, appWidth*1/2, appHeight*1/2);
   //
   rect(albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight);
-  rect(playButtonX, playButtonY, playButtonWidth, playButtonHeight);
   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
   //
 } //End Draw Rectangles

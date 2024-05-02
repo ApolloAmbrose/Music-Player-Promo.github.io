@@ -20,7 +20,7 @@ color backgroundColour, darkBackground=0, whiteBackground=255;  //Gray Scale, no
 color foregroundColour;
 color white=255, yellow=#FFFF00, black=0, purple=#FF00FF; //Hexidecimal, see Tools / Colour selector
 Boolean dayMode=false; //App starts in night mode
-Boolean lightMode=false; //Dark mode starts App , null possible if UER preferences made
+Boolean light
 //
 void setup()  {
   println("HelloWorld");
@@ -116,7 +116,7 @@ void draw() {
   textAlign( CENTER, CENTER ); //Align X&Y, see Processing.org / Reference
   //Values: [ LEFT | CENTER | RIGHT ] & [ TOP | CENTER | BOTTOM | BASELINE ]
    size = appHeight*1/23; // Var based on ratio of display
-  textFont(generalFont, size;*1/23);
+  textFont(generalFont, size);*1/23;
   text(quit, quitButtonX+quitButtonWidth*1/7, quitButtonY+quitButtonHeight*1/7, quitButtonWidth*5/7, quitButtonHeight*5/7); //Inside rect() above
   fill(foregroundColour); //Resetting the Defaults
   //
