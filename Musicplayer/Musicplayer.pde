@@ -1,17 +1,17 @@
-
+//Library
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
 import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
-
 // Global Variables
 Minim minim; //creates object to access all functions
 AudioPlayer soundEffects1;
-AudioPlayer playlist1; 
+AudioPlayer playlist1; //"Play List" for Sound Effects 
 //
 int appWidth, appHeight;
+//
 int size;
 PFont generalFont;
 String quit="QUIT";
@@ -22,6 +22,12 @@ color white=255, yellow=#FFFF00, black=0, purple=#FF00FF; //Hexidecimal, see Too
 Boolean dayMode=false; //App starts in night mode
 Boolean light
 //
+String pathDarkBackgroundImage, pathLightBackGroundImage;
+PImage summerMarketPlaceBackground, darthvader, obiwan, bike;
+PImage backgoroundImage;
+PImage albumCoverImage;
+float albumCoverRight, albumCoverCENTERED, albumCOverLeft;
+
 void setup()  {
   println("HelloWorld");
   //Concatenation & Inspecting Variabes with Character Escapes
