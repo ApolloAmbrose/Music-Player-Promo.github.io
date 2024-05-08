@@ -7,7 +7,7 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 // Global Variables
 Minim minim; //creates object to access all functions
-AudioPlayer soundEffects1;
+AudioPlayer soundEffects1;..
 AudioPlayer playlist1; //"Play List" for Sound Effects 
 //
 int appWidth, appHeight;
@@ -19,8 +19,8 @@ String quit="QUIT";
 color backgroundColour, darkBackground=0, whiteBackground=255;  //Gray Scale, note much smaller than COLOR
 color foregroundColour;
 color white=255, yellow=#FFFF00, black=0, purple=#FF00FF; //Hexidecimal, see Tools / Colour selector
-Boolean dayMode=false; //App starts in night mode
-Boolean light
+Boolean dayMode=false, whiteMode=false; //App starts in night mode
+//Boolean light
 //
 String pathDarkBackgroundImage, pathLightBackGroundImage;
 PImage summerMarketPlaceBackground, darthvader, obiwan, bike;
@@ -44,10 +44,10 @@ void setup()  {
   String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "self desruction in 5 seconds";
   println(displayInstructions);
   //
-  minim = new minim(this);
+  minim = new Minim(this);
   String extension = ".mp3";
-  String quitButtonSound = "CarDoorClosing";
-  String pathwaySoundEffects = "../AudioSound effects"; //Relative Path;
+  String quitButtonSound = "clown-car-made-with-Voicemod";
+  String pathwaySoundEffects = "../Audio files/"; //Relative Path;
   //println( pathwaySoundEffects+quitButtonSound+extension );
   String path = sketchPath( pathwaySoundEffects + quitButtonSound + extension ); //Absolute Path
   //println( path );
@@ -62,11 +62,7 @@ void setup()  {
   //bottomFont = createFont("", size); //Note: more than one font allowed
   // Tools / Create Font / Find Font / Use size field / Do not press "OK", known bug
   //
-  
-  
-  
-
-  //Layout DIVs
+ //Layout DIVs
  //rect(X, Y, Width, Height);
    rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
    int centerX = appWidth*1/2;
@@ -106,8 +102,7 @@ void draw() {
   fill(foregroundColour);
   //
   //Quit Button
-  //fill(purple);
-  //if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight ) fill(yellow);
+ 
   fill(purple);
   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
   if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight ) {
@@ -122,7 +117,7 @@ void draw() {
   textAlign( CENTER, CENTER ); //Align X&Y, see Processing.org / Reference
   //Values: [ LEFT | CENTER | RIGHT ] & [ TOP | CENTER | BOTTOM | BASELINE ]
    size = appHeight*1/23; // Var based on ratio of display
-  textFont(generalFont, size);*1/23;
+  textFont(generalFont, size);
   text(quit, quitButtonX+quitButtonWidth*1/7, quitButtonY+quitButtonHeight*1/7, quitButtonWidth*5/7, quitButtonHeight*5/7); //Inside rect() above
   fill(foregroundColour); //Resetting the Defaults
   //
@@ -145,11 +140,3 @@ void mousePressed() { //Listener
   }
 } //End mousePressed
 //
-void soundeffect_1() {
-  int loop0nce = 0;
-  int timeForSoundEffect1 = 2650; //parameter: milliseconds
-soundEffects1.loop(loop0nce);
-delay(timeForSoundEffect1); 
-exit();
-}  // End soundeffect_1()
-// End MAIN Program
