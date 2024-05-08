@@ -7,7 +7,7 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 // Global Variables
 Minim minim; //creates object to access all functions
-AudioPlayer soundEffects1;..
+AudioPlayer soundEffects1;
 AudioPlayer playlist1; //"Play List" for Sound Effects 
 //
 int appWidth, appHeight;
@@ -36,7 +36,7 @@ void setup()  {
   println("Example Formula: add 1000 to the width", width+1000); 
   //
   //Display: CANVAS
-  size(400, 500); //width, height 
+  //size(400, 500); //width, height 
   fullScreen(); //displayWidth, displayHeight
   appWidth = displayWidth;
   appHeight = displayHeight;
@@ -118,7 +118,7 @@ void draw() {
   //Values: [ LEFT | CENTER | RIGHT ] & [ TOP | CENTER | BOTTOM | BASELINE ]
    size = appHeight*1/23; // Var based on ratio of display
   textFont(generalFont, size);
-  text(quit, quitButtonX+quitButtonWidth*1/7, quitButtonY+quitButtonHeight*1/7, quitButtonWidth*5/7, quitButtonHeight*5/7); //Inside rect() above
+  text(quit, quitButtonX+quitButtonWidth*1/7, quitButtonY+quitButtonHeight*1/7, quitButtonWidth*2/7, quitButtonHeight*2/7); //Inside rect() above
   fill(foregroundColour); //Resetting the Defaults
   //
 
