@@ -53,7 +53,7 @@ void mousePressed() {
 void keyPressed() { //Key Board Short Cuts for Mouse Pressing Prototyping
   if ( key=='W' || key=='w' ) { //Day Mode, White Light Containing Blue Colour
     if (  lightMode == false ) {
-      lightMode = false;  //Light Mode ON
+      lightMode = true;  //Light Mode ON
     } else {
       lightMode = false; //Dark Mode ON
     }
