@@ -1,4 +1,4 @@
-/* Documentation
+/* Documentation 
  Library: use Sketch / Import Library / Add Library / Minim
  Suporting Website: https://code.compartmental.net/minim/
  - https://code.compartmental.net/minim/audioplayer_method_loop.html
@@ -66,3 +66,49 @@ void setup() {
   //DIV
   rect(backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight);
 } //End setup
+//
+void draw() {
+  background(backgroundColour);
+  fill(foregroundColour);
+  //
+  //Quit Button
+  //fill(purple);
+  //if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight ) fill(yellow);
+  fill(purple);
+  rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
+  if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight ) {
+    fill(yellow);
+    rect( quitButtonX+quitButtonWidth*1/7, quitButtonY+quitButtonHeight*1/7, quitButtonWidth*5/7, quitButtonHeight*5/7);
+  } else {
+    fill(purple);
+  }
+  fill(foregroundColour); //Resetting the Defaults
+  //Quit, Text
+  fill(foregroundColour); //Ink
+  textAlign( CENTER, CENTER ); //Align X&Y, see Processing.org / Reference
+  //Values: [ LEFT | CENTER | RIGHT ] & [ TOP | CENTER | BOTTOM | BASELINE ]
+  size = appHeight*1/23; // Var based on ratio of display
+  textFont(generalFont, size);
+  text(quit, quitButtonX+quitButtonWidth*1/7, quitButtonY+quitButtonHeight*1/7, quitButtonWidth*5/7, quitButtonHeight*5/7); //Inside rect() above
+  fill(foregroundColour); //Resetting the Defaults
+  //
+
+  println(mouseX, mouseY);
+
+  //
+} //End draw
+//
+void keyPressed() { //Listener
+  if (key=='Q' || key=='q') exit();
+  if (key==CODED && keyCode==ESC) exit();
+  if (key=='W' || key=='w') ;
+} //End keyPressed
+//
+void mousePressed() { //Listener
+  if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight )
+  {
+    exit();
+  }
+} //End mousePressed
+//
+// End MAIN Program

@@ -1,4 +1,3 @@
-
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -24,7 +23,7 @@ void setup() {
   appWidth = displayWidth; //width
   appHeight = displayHeight; //height
   //Landscape is HARDCODED
-  String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "5 seconds left before self destruction";
+  String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "Bru, turn your phun";
   println(displayInstructions);
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder, like loadImage
@@ -42,7 +41,8 @@ void setup() {
   playList[0] =  minim.loadFile( pathGrooveSong ); // "" is compiler error
   //
   //Note: Music starts before CANVAS ... Purpose of Player
-  playList[currentSong].loop(8); //Testing Only
+  //Note: See Easter Egg about Time-On and Looping Songs
+  //playList[currentSong].loop(0); //Testing Only
   //
 } //End setup
 //
@@ -50,7 +50,7 @@ void draw() {
   println( "Song Position", playList[currentSong].position(), "Song Length", playList[currentSong].length() );
   //
   //ERROR: only plays beginning of song before starting again
-  playList[currentSong].loop(1);
+  //playList[currentSong].loop(0);
   //
   /*Note: For Loop Feature
    Easter Egg: program time for number of song loops
@@ -58,26 +58,55 @@ void draw() {
    if ( playList[currentSong].isLooping() && playList[currentSong].loopCount()!=-1 ) println("There are", playList[currentSong].loopCount(), "loops left.");
    if ( playList[currentSong].isLooping() && playList[currentSong].loopCount()==-1 ) println("Looping Infinitely");
    */
-   //
+  //
+  if ( !playList[currentSong].isPlaying() ) println( "Nothing is playing, Pick a Song" );
   if ( playList[currentSong].isPlaying() && !playList[currentSong].isLooping() ) println("Play Once");
   //
-  /*
+  /* Auto Play Code for Future Use
+   Contains instructions from Key Board Short Cuts
+   Note: PAIN Thresholds, 3 minutes & 75%, can be variables
+   Note: Variables can be set in a Menu Button
+   */
   if ( playList[currentSong].isPlaying() ) {
+    //Empty IF is FALSE
+  } else if ( playList[currentSong].length() < 180000 ) { //PAIN Minutes is 3, 180s, 180,000ms
+    //TRUE: if song is less than 3 minutes, STOP, I want to hear it from the beginning
+    //Pause is actually STOP
+    playList[currentSong].rewind(); //NOTE: !.isPlaying() & .rewind() = STOP
+  } else if ( !playList[currentSong].isPlaying()  && ( playList[currentSong].position() > playList[currentSong].length()*0.75 ) ) { //Calc PAIN #
+    //TRUE: if 75% played, we need a STOP & Rewind Button
+    playList[currentSong].rewind(); //NOTE: !.isPlaying() & .rewind() = STOP
+    //
+    /* Future coding
+     currentSong = currentSong + 1; //currentSong++; currentSong+=1
+     playList[currentSong].play();
+     */
+  } else {
+  }
+  /* Previous IF-Else
+   if ( playList[currentSong].isPlaying() ) {
    //Empty IF, TRUE
    } else {
-   //currentSong at end of FILE
-   playList[currentSong].rewind();
-   currentSong = currentSong + 1; //currentSong++; currentSong+=1
-   playList[currentSong].play();
+   playList[currentSong].rewind(); //CAUTION: !.isPlaying() & .rewind() = STOP
    }
    */
 } //End draw
 //
 void keyPressed() {
-    if ( key=='P' || key =='p' )  { //Play Pause Button
-      playList[currentSong].play();
-     //if () {} else {}
-    } //End Play Pause Button
+  if ( key=='P' || key=='p' ) { //Play Pause Button
+    //How much of the song should play before the Pause Button is actually a rewind button
+    if ( playList[currentSong].isPlaying() ) { //Note, debugging: use true==true & true==false
+      playList[currentSong].pause(); //playList[currentSong].play();
+    } else {
+      playList[currentSong].play(); //playList[currentSong].pause();
+    }
+  } //End Play Pause Button
+  if ( key=='L' || key=='l' ) { //LoopOnce
+   playList[currentSong].loop(1);
+  }//End Loop Once
+  if ( key=='I' || key=='i' ) {//Loop Infinite Times
+   playList[currentSong].loop(1);
+  } //End Loop Infinite Times
 } //End keyPressed
 //
 void mousePressed() {
