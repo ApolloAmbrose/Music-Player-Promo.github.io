@@ -32,6 +32,7 @@ color backgroundColour, darkBackground=0, whiteBackground=255; //Gray Scale, not
 color foregroundColour;
 //
 String pathDarkBackgroundImage, pathLightBackgroundImage;
+String pathwayquitButtonsound, pathwayextension;
 PImage summerMarketPlaceBackground, darthvader, obiwan, bike;
 PImage backgroundImage;
 PImage albumCoverImage;
@@ -50,14 +51,14 @@ void setup() {
   String backgroundImageName = bike;
   String extension = ".jpg";
   String pathway = "../Images/";
-  String path = pathway quitButtonsound = "clown-car-made-with-Voicemod";
-  String path = pathway extension2 = ".mp3";
+  String path = pathwayquitButtonsound = "clown-car-made-with-Voicemod";
+  String extension1 = pathwayextension1 = ".mp3";
 //  String landscape_Square = "Landscape & Square Images/";
 //  String portrait = "Portrait/";
   //Control with IFs
-  String path = pathway +  backgroundImageName + extension;
+  String path2 = pathway +  backgroundImageName + extension;
   //String path = pathway + portrait + backgroundImageName + extension;
-  backgroundImage = loadImage( path );
+  backgroundImage = loadImage( path2 );
   //
   //DIV
   rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
