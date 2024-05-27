@@ -2,6 +2,7 @@ float backgroundX, backgroundY, backgroundWidth, backgroundHeight;
 float albumCoverX, albumCoverY, albumCoverWidth, albumCoverHeight, albumCoverWidthAdjusted, albumCoverHeightAdjusted;
 float playButtonX, playButtonY, playButtonWidth, playButtonHeight;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
+float centerX, centerY;
 //
 void divs() { //Access all of subprogram in order
   population();
