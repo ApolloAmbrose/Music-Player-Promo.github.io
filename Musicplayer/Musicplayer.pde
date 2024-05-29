@@ -16,6 +16,8 @@ import ddf.minim.ugens.*;
 Minim minim; //creates object to access all functions
 AudioPlayer playList1; //creates "Play List" variable holding extensions WAV, AIFF, AU, SND, and MP3
 AudioPlayer soundEffects1; //"Play List" for Sound Effects
+PImage AlbumCover1;
+String albumcoverImagePath;
 //
 int appWidth, appHeight;
 //
@@ -78,6 +80,12 @@ void setup() {
   String landscape_Square = "Landscape & Square Images/";
   String portrait = "Portrait/";
   String backgroundFileName = "Background Image/";
+  String bike = "New06_Toopy_Binoo";
+  String extension2 = ".jpg";
+ // String pathway = "../Images/";
+  albumcoverImagePath = pathway + bike + extension2;
+  AlbumCover1 = loadImage(albumcoverImagePath);
+  
   pathLightBackgroundImage = pathway + backgroundFileName + summerMarketPlaceImage + extensionPNG;
   pathDarkBackgroundImage = pathway + portrait + darthvader + extensionJPG;
   String albumCoverImagePath = pathway + landscape_Square + obiWan + extensionJPG;
@@ -143,7 +151,7 @@ void draw() {
   } else {
     tint(255, 255, 255, 0); //no blue;
   }
-  image( backgroundImage, backgroundX, backgroundY, backgroundWidth, backgroundHeight);
+  image( AlbumCover1, backgroundX, backgroundY, backgroundWidth, backgroundHeight);
   fill(foregroundColour);
   //
  //Quit Button
