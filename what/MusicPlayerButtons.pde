@@ -12,7 +12,7 @@ int numberSoundEffects = 4; //DEV Verify, OS able to count (CS20 Solution)
 int numberMusicSongs = 8; //DEV Verify, OS able to count (CS20 Solution)
 AudioPlayer[] playList = new AudioPlayer[ numberMusicSongs ]; //creates "Play List" variable holding extensions WAV, AIFF, AU, SND, and MP3
 AudioPlayer[] soundEffects = new AudioPlayer[ numberSoundEffects ]; //"Play List" for Sound Effects
-int currentSong = 0; //JAVA starts counting at 0, not for all languages
+int currentSong = numberMusicSongs - numberMusicSongs; //JAVA starts counting at 0, not for all languages
 //
 int appWidth, appHeight;
 //
@@ -43,6 +43,7 @@ void setup() {
   String quitButtonSound = "CarDoorClosing";
   String groove = "groove";
   String extension = ".mp3";
+  String Clown-car-made-with-voice-mod = "Clown-car-made-with-voice-mod";
   //println ( pathwaySoundEffects+quitButtonSound+extension );
   //println ( "Relative Pathway:", pathwayMusic+groove+extension );
   String pathQuitButtonSound = sketchPath( pathwaySoundEffects + quitButtonSound + extension ); //Absolute Path
