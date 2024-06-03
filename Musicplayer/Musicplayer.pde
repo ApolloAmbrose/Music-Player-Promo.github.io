@@ -155,7 +155,7 @@ void draw() {
   fill(foregroundColour);
   //
  //Quit Button
-  //fill(purple);
+  fill(purple);
   if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight ) fill(yellow);
   fill(purple);
   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
@@ -187,7 +187,7 @@ void keyPressed() { //Listener
   {
     soundeffect_1();
   }
-  if (key==CODED && keyCode==ESC) //Hardcoded QUIT, no sound available
+  if (key==CODED && keyCode==ESC) 
   {
     soundeffect_1();
   }
