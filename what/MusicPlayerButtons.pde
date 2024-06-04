@@ -15,6 +15,7 @@ String[] filePathNameSoundEffect = new String[numberSoundEffects];
 AudioPlayer[] playList = new AudioPlayer[ numberMusicSongs ]; //creates "Play List" variable holding extensions WAV, AIFF, AU, SND, and MP3
 AudioPlayer[] soundEffects = new AudioPlayer[ numberSoundEffects ]; //"Play List" for Sound Effects
 int currentSong = numberMusicSongs - numberMusicSongs; //JAVA starts counting at 0, not for all languages
+int skip = 5000
 //
 int appWidth, appHeight;
 //
