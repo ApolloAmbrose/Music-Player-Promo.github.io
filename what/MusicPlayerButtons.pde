@@ -8,8 +8,10 @@ import ddf.minim.ugens.*;
 //
 //Global Variables
 Minim minim; //creates object to access all functions
-int numberSoundEffects = 4; //DEV Verify, OS able to count (CS20 Solution)
-int numberMusicSongs = 8; //DEV Verify, OS able to count (CS20 Solution)
+int numberSoundEffects = 1; //DEV Verify, OS able to count (CS20 Solution)
+int numberMusicSongs = 1; //DEV Verify, OS able to count (CS20 Solution)
+String[] filePathNameMusic = new String[numberMusicSongs];
+String[] filePathNameSoundEffect = new String[numberSoundEffects];
 AudioPlayer[] playList = new AudioPlayer[ numberMusicSongs ]; //creates "Play List" variable holding extensions WAV, AIFF, AU, SND, and MP3
 AudioPlayer[] soundEffects = new AudioPlayer[ numberSoundEffects ]; //"Play List" for Sound Effects
 int currentSong = numberMusicSongs - numberMusicSongs; //JAVA starts counting at 0, not for all languages
@@ -31,19 +33,20 @@ void setup() {
   appWidth = displayWidth; //width
   appHeight = displayHeight; //height
   //Landscape is HARDCODED
-  String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "Bru, turn your phun";
+  String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "self destruction in 5 seconds";
   println(displayInstructions);
   //
   //Font Code
   generalFont = createFont( "Harrington", appHeight );
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder, like loadImage
-  String pathwaySoundEffects = "../../../../Audio/SoundEffect/"; //Relative Path
-  String pathwayMusic = "../../../../Audio/MusicDownload/"; //Relative Path
+  String pathwayAudioFiles = "../../../../Audio/Files/"; //Relative Path
+  String pathwayMusic = "../../../../Audio/Files/"; //Relative Path
   String quitButtonSound = "CarDoorClosing";
   String groove = "groove";
   String extension = ".mp3";
   String Clown-car-made-with-voice-mod = "Clown-car-made-with-voice-mod";
+  String pathwaySoundEffects = "
   //println ( pathwaySoundEffects+quitButtonSound+extension );
   //println ( "Relative Pathway:", pathwayMusic+groove+extension );
   String pathQuitButtonSound = sketchPath( pathwaySoundEffects + quitButtonSound + extension ); //Absolute Path
@@ -123,7 +126,7 @@ void keyPressed() {
     looping = true;
   } //End Loop Once
   if ( key=='I' || key=='i' ) { //Loop Infinite Times
-    playList[currentSong].loop();
+    playList[currentSong].loop(1);
     looping = true;
   } //End Loop Infinite Times
   if ( key=='S' || key=='s' ) { // STOP Button
@@ -131,6 +134,11 @@ void keyPressed() {
     playList[currentSong].rewind(); //Affects LOOP Times
     looping = false;
   } // End STOP Button
+  //Randomly Pick another song in the Play List
+  if ( key=='A' || key=='a') currentSong = int ( random( numberMusicSongs-numberMusicSongs, numberMusicSongs ) );
+  println( "Current Song, Random Number", currentSong );
+  playList.pause();
+  
   //
 } //End keyPressed
 //
