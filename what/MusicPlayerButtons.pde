@@ -33,8 +33,7 @@ void setup() {
   println(displayInstructions);
   //
   minim = new Minim(this); //load from data directory, loadFile should also load from project folder, like loadImage
-  String pathwaySoundEffects = "../../../../../../Audio/SoundEffect/"; //Relative Path
-  String pathwayMusic = "../../../../../../Audio/MusicDownload/"; //Relative Path
+  String pathwayMusic = "../../../../../../Audiofiles/Music/"; //Relative Path
   String quitButtonSound = "CarDoorClosing";
   String groove = "groove";
   String beatYourCompetition = "Beat_Your_Competition";
@@ -77,24 +76,25 @@ void setup() {
   //
   //Note: Music starts before CANVAS ... Purpose of Player
   //Note: See Easter Egg about Time-On and Looping Songs
-  println(currentSong, filePathNameMusic[currentSong]);
+  //println(currentSong, filePathNameMusic[currentSong]);
   currentSong = numberMusicSongs-numberMusicSongs; //Resetting the Defaults
   playList =  minim.loadFile( filePathNameMusic[currentSong] ); // "" is compiler error
   //Note: music player "plays" one loaded song at a time
   playList.loop(0); //Testing Only
+  println( "Current Song is:", currentSong);
   //
 } //End setup
 //
 void draw() {
   /*
   //Instrpection of Booleans and Associated Varaiables
-  println( "Song Position", playList.position(), "Song Length", playList.length() );
-  if ( playList.isLooping() && playList.loopCount()!=-1 ) println("There are", playList.loopCount(), "loops left.");
-  if ( playList.isLooping() && playList.loopCount()==-1 ) println("Looping Infinitely");
-  //println("Keyboard Looping Question", looping);
-  if ( !playList.isPlaying() ) println( "Nothing is playing, Pick a Song" );
-  if ( playList.isPlaying() && !playList.isLooping() ) println("Play Once");
-  */
+   println( "Song Position", playList.position(), "Song Length", playList.length() );
+   if ( playList.isLooping() && playList.loopCount()!=-1 ) println("There are", playList.loopCount(), "loops left.");
+   if ( playList.isLooping() && playList.loopCount()==-1 ) println("Looping Infinitely");
+   //println("Keyboard Looping Question", looping);
+   if ( !playList.isPlaying() ) println( "Nothing is playing, Pick a Song" );
+   if ( playList.isPlaying() && !playList.isLooping() ) println("Play Once");
+   */
   //
   //Random Start Prototype
   //println( "Current Song, Random Number:", currentSong );
@@ -115,11 +115,36 @@ void draw() {
     //.pause() in keyPressed() {} is actually STOP
     playList.rewind(); //NOTE: !.isPlaying() & .rewind() = STOP
   } else {
-    /* Future coding
-     currentSong = currentSong + 1; //currentSong++; currentSong+=1
-     playList[currentSong].play();
+    /* Future coding: see keyPressed FF Key between 10s & 75%
+     println( "Current Song # is:", currentSong );
+     playList.pause(); //Note: computer plays harddrive file,
+     playList.rewind(); //     mulitple files will play at the same time
+     //Try Catch solves arrayListOutOfBounds
+     if ( currentSong >= numberMusicSongs-1 ) { //Note: posssible error when !=, better code ... currentSong<0
+     currentSong = 0;
+     } else {
+     currentSong++;
+     }
+     println( "Current Song changed to:", currentSong );
+     playList =  minim.loadFile( filePathNameMusic[currentSong] );
+     playList.play();
      */
+    println( "Else of IF-Elseif-Else ( .isPlaying) " );
+    playList.pause(); //Note: computer plays harddrive file,
+    playList.rewind(); //     mulitple files will play at the same time
+    //Try Catch solves arrayListOutOfBounds
+    if ( currentSong >= numberMusicSongs-1 ) { //Note: posssible error when !=, better code ... currentSong<0
+      currentSong = 0;
+    } else {
+      currentSong++;
+    }
+    println( "Current Song changed to:", currentSong );
+    playList =  minim.loadFile( filePathNameMusic[currentSong] );
+    playList.play();
   }
+  //Debugging else of AutoPlay with println() & IF to mimic else of IF-Elseif-Else (computer has made mistake)
+  println("Playing Boolean:", playList.isPlaying(), "\tCurrent Song is:", currentSong, "DO NOT Press FF:", playList.position()>playList.length()*0.75, "\t\tSong Position:", playList.position(), "End of Song:", playList.length() );
+  //if (  ) {} //Note: 3rd time for NEXT Code
   //
 } //End draw
 //
@@ -179,26 +204,84 @@ void keyPressed() {
     }
     println ( "New Value of SKIP", skip, "Position:", playList.position(), "Crossed Last 75%", playList.position()>playList.length()*0.75, "\t\tLast 75% starts at:", playList.length()*0.75, "Song Ends at:", playList.length() ) ;
   }
+  /* Repeating Code
+   - NOTE: two repetitions of the same code exist
+   - If a change happens to one, both should be automatically changed
+   - Best Practice: Procedural Programming
+   */
   if ( key=='F' || key=='f' ) {
     /* NEXT Code
-    - Order of Nested IFs: <10 seconds, between 10 & 75%, >75%, then else allows for regular skip on any file when not playing
-    - Create a void next() to group this code if needing to use it other places
-    - NEXT Button
-    */
-    if ( playList.position()>10000 ) ;
-    if ( playList.position()>10000 && playlist.position()>playlist.length*0.75  ) ;
-    if ( playlist.position()>playlist.length*0.75 ) ; 
-    playList.skip( skip ) ; //SKIP Forward 1 second (1000 milliseconds)
+     - Order of Nested IFs: <10 seconds, between 10s & 75%, >75%, then else allows for regular skip on any file when not playing
+     - Create a void next() to group this code if needing to use it other places
+     - NEXT Button
+     */
+    if ( playList.position()<10000 ) {
+      println( "Current Song # is:", currentSong );
+      playList.pause(); //Note: computer plays harddrive file,
+      playList.rewind(); //     mulitple files will play at the same time
+      //Try Catch solves arrayListOutOfBounds
+      if ( currentSong >= numberMusicSongs-1 ) { //Note: posssible error when !=, better code ... currentSong<0
+        currentSong = 0;
+      } else {
+        currentSong++;
+      }
+      println( "Current Song changed to:", currentSong );
+      playList =  minim.loadFile( filePathNameMusic[currentSong] );
+      playList.play();
+    }
+    //CAUTION: inequalities do not confuse computer
+    if ( playList.position()>=10000 && playList.position()<=playList.length()*0.75 ) playList.skip( skip ) ; //SKIP Forward 1 second (1000 milliseconds);
+    if ( playList.position()>playList.length()*0.75 ) {
+      /* NEXT
+       - Pauses current song, Rewinds current song, currentSong++, Play current song
+       - ERROR: arrayListOutOfBounds
+       - TBA
+       */
+      println( "Current Song # is:", currentSong );
+      playList.pause(); //Note: computer plays harddrive file,
+      playList.rewind(); //     mulitple files will play at the same time
+      //Try Catch solves arrayListOutOfBounds
+      if ( currentSong >= numberMusicSongs-1 ) { //Note: posssible error when !=
+        currentSong = 0;
+      } else {
+        currentSong++;
+      }
+      println( "Current Song changed to:", currentSong );
+      playList =  minim.loadFile( filePathNameMusic[currentSong] );
+      playList.play();
+    }
+
     println ( "New Value of SKIP", skip, "Position:", playList.position(), "Crossed Last 75%", playList.position()>playList.length()*0.75, "\t\tLast 75% starts at:", playList.length()*0.75, "Song Ends at:", playList.length() ) ;
   }
   if ( key=='R' || key=='r' ) {
     /* Previous Code
-    - Order of Nested IFs: <10 seconds, between 10 & 75%, >75%, then else allows for regular skip on any file when not playing
-    - Create a void next() to group this code if needing to use it other places
-    */
+     - Order of Nested IFs: <10 seconds, between 10s & 75%, >75%, then else allows for regular skip on any file when not playing
+     - Create a void next() to group this code if needing to use it other places
+     */
     playList.skip( -skip ) ; //SKIP Reverse 1 second (1000 milliseconds)
     println ( "New Value of SKIP", skip, "Position:", playList.position(), "Crossed Last 75%", playList.position()>playList.length()*0.75, "\t\tLast 75% starts at:", playList.length()*0.75, "Song Ends at:", playList.length() ) ;
   }
+  //
+  /* Basic PREVIOUS Code
+   - NOTE: Students must code all PREVIOUS Buttons: FR only
+   - Note: advanced music player feature is to play the playlist backwards
+   - Hint: this reverses the autoplay from NEXT to PREVIOUS
+   
+   println( "Current Song # is:", currentSong );
+   playList.pause(); //Note: computer plays harddrive file,
+   playList.rewind(); //     mulitple files will play at the same time
+   //Try Catch solves arrayListOutOfBounds
+   if ( currentSong <= 0-1 ) { //Note: posssible error when !=, better code ... currentSong<0
+   currentSong = numberMusicSongs;
+   } else {
+   currentSong++;
+   }
+   println( "Current Song changed to:", currentSong );
+   playList =  minim.loadFile( filePathNameMusic[currentSong] );
+   playList.play();
+   }
+   
+   */
   //
 } //End keyPressed
 //
