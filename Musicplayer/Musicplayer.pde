@@ -31,9 +31,10 @@ color backgroundColour, darkBackground=0, whiteBackground=255; //Gray Scale, not
 color foregroundColour;
 //
 String pathDarkBackgroundImage, pathLightBackgroundImage;
-PImage summerMarketPlaceBackground, darthvader, obiwan, bike;
+PImage New06_Toopy_Binoo;
 PImage backgroundImage;
 PImage albumCoverImage;
+PImage abc123;
 float albumCoverRIGHT, albumCoverCENTERED, albumCoverLEFT; //??? Local
 //
 void setup() {
@@ -46,13 +47,105 @@ void setup() {
   String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "Bru, turn your phun";
   println(displayInstructions);
   //
-    minim = new Minim(this);
-     String pathwaySoundEffects = "../AudioFiles/SoundEffectssss/";
+  minim = new Minim(this); //load from data directory, loadFile should also load from project folder, like loadImage
+  String pathwaySoundEffects = "../Audio files/Sound effectssss/"; //Relative Path
+  String quitButtonSound = "clown-car-made-with-Voicemod";
+  String extension = ".mp3";
+  //println ( pathwaySoundEffects+quitButtonSound+extension );
+  String path = sketchPath( pathwaySoundEffects + quitButtonSound + extension ); //Absolute Path
+  //println ( path );
+  soundEffects1 = minim.loadFile( path );
+  //playList1 = minim.loadFile( path );
+  //
+  //Fonts from OS (Operating System)
+  //String[] fontList = PFont.list(); //To list all fonts available on OS
+  //printArray(fontList); //For listing all possible fonts to choose from, then createFont
+  size = ( appWidth > appHeight ) ? appHeight : appWidth ; // Font size starts with smaller dimension
+  generalFont = createFont("Harrington", size);
+  //bottomFont = createFont("", size); //Note: more than one font allowed
+  // Tools / Create Font / Find Font / Use size field / Do not press "OK", known bug
+  //
+  divs();
+  //
+  //Variable Population
+  //Images
+  String New06_Toopy_Binoo = "New06_Toopy_Binoo";
+//  String darthvader = "10-star-wars-darth-vader-portrait-wallpaper-1-325x485";
+//  String obiWan = "Obi-wan-star-wars-jedi-23864621-800-600";
+//  String bike = "bike";
+//  String extensionPNG  = ".png";
+  String extensionJPG = ".jpg";
+  String pathway = "../Images/";
+ // String landscape_Square = "Landscape & Square Images/";
+ // String portrait = "Portrait/";
+ // String backgroundFileName = "Background Image/";
+  pathLightBackgroundImage = pathway + New06_Toopy_Binoo + extensionJPG;
+ // pathDarkBackgroundImage = pathway + portrait + darthvader + extensionJPG;
+  String albumCoverImagePath = pathway + New06_Toopy_Binoo + extensionJPG;
+  albumCoverImage = loadImage( albumCoverImagePath );
+  //
+  //Image Aspect Ratio Calculations
+  //NOTE: IF-Else & WHILE to Adjust Aspect Ratio Dimensions
+  //Forms a Procedure for Aspect Ratios of all Images ( copy and paste in setup() )
+  float smallerAlbumCoverDimension = ( albumCoverWidth < albumCoverHeight ) ? albumCoverWidth : albumCoverHeight ;
+  float albumCoverImageWidthPixel = 800.0; //Origonally INTs, ratio will be decimal
+  float albumCoverImageHeightPixel = 600.0; //CAUTION: must avoid truncation to ZERO Value
+  float albumCoverAspectRatio = albumCoverImageWidthPixel/albumCoverImageHeightPixel;
+  float largerAlbumCoverDimension = smallerAlbumCoverDimension*albumCoverAspectRatio; //Apsect Ratio
+  if ( albumCoverWidth < largerAlbumCoverDimension ) { //Image will not fit into DIV rect()
+    while ( albumCoverWidth < largerAlbumCoverDimension ) {
+      largerAlbumCoverDimension -= 1;
+      smallerAlbumCoverDimension -= 1;
+      //NOTE: ratios like percent are not linear decreases in both directions
+    }
+  }
+  albumCoverWidthAdjusted = largerAlbumCoverDimension;
+  albumCoverHeightAdjusted = smallerAlbumCoverDimension;
+  //
+  /*Image can be centered, left justified, or right justified on the larger dimension
+   LEFT: X-value of image same as rect()
+   CENTERED: X-value of image = albumCoverX + (albumCoverWidth-albumCoverWidthAdjusted)/2;
+   RIGHT: X-value of image = albumCoverX+albumCoverWidth-albumCoverWidthAdjusted;
+   */
+  albumCoverRIGHT = albumCoverX;
+  albumCoverCENTERED = albumCoverX + (albumCoverWidth-albumCoverWidthAdjusted)/2;
+  albumCoverLEFT =albumCoverX+albumCoverWidth-albumCoverWidthAdjusted;
+  //
+  //Time Calculations
+  //if ( hour()>=9 && hour()<=17 ) backgroundColour = whiteBackground;
+  //if ( hour()<9 && hour()>17 ) backgroundColour = darkBackground;
+  if ( hour()>=9 && hour()<=17 ) dayMode=true; //Day & Night Mode Clock Choice
+  //println(dayMode);
+/*  if ( dayMode==true && lightMode==true ) { //Light & Dark Modes, Logical Shortcut
+    backgroundColour = whiteBackground;
+    foregroundColour = black;
+    backgroundImage = loadImage( pathLightBackgroundImage ); //Changing this Variable with 3 different images
+  } else if ( lightMode==false ) {
+    backgroundColour = black;
+    foregroundColour = whiteBackground;
+//    backgroundImage = loadImage( pathDarkBackgroundImage );
+  } else {
+    backgroundColour = darkBackground;
+    foregroundColour = yellow; //Note: if(hour()<9&&hour()>17)
+    backgroundImage = loadImage( pathDarkBackgroundImage );
+  }*/
+  //
+  //soundEffects1.loop();
 } //End setup
 //
 void draw() {
-   background(backgroundColour);
-  fill(foregroundColour);
+  //Display
+  // background(backgroundColour); //Hardcoded Backgorund Colour Out, use IF to change
+ /* if ( dayMode=true && lightMode == true ) { //Boolean keyBind, Logical Shortcut
+    //CAUTION: See setup
+    backgroundImage = loadImage( pathLightBackgroundImage );
+  } else if ( lightMode == false ) {
+    backgroundImage = loadImage( pathDarkBackgroundImage );
+  } else {
+    tint(255, 255, 255, 0); //no blue;
+  }*/
+//  image( backgroundImage, backgroundX, backgroundY, backgroundWidth, backgroundHeight);
+  //fill(foregroundColour);
   //
   //Quit Button
   //fill(purple);
@@ -70,16 +163,17 @@ void draw() {
   fill(foregroundColour); //Ink
   textAlign( CENTER, CENTER ); //Align X&Y, see Processing.org / Reference
   //Values: [ LEFT | CENTER | RIGHT ] & [ TOP | CENTER | BOTTOM | BASELINE ]
-  size = appHeight*1/28; // Var based on ratio of display
+  size = appHeight*1/23; // Var based on ratio of display
   textFont(generalFont, size);
   text(quit, quitButtonX+quitButtonWidth*1/7, quitButtonY+quitButtonHeight*1/7, quitButtonWidth*5/7, quitButtonHeight*5/7); //Inside rect() above
   fill(foregroundColour); //Resetting the Defaults
   //
-
-  //println(mouseX, mouseY);
-
+  //Albumn Cover Image
+  image( albumCoverImage, albumCoverCENTERED, albumCoverY, albumCoverWidthAdjusted, albumCoverHeightAdjusted );
   //
-} //End draw 
+  //println(mouseX, mouseY);
+  //
+} //End draw
 //
 void keyPressed() { //Listener
   if (key=='Q' || key=='q')
