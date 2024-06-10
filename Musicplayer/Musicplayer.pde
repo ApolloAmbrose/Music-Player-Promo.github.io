@@ -36,6 +36,10 @@ PImage backgroundImage;
 PImage albumCoverImage;
 PImage abc123;
 float albumCoverRIGHT, albumCoverCENTERED, albumCoverLEFT; //??? Local
+Boolean albumCover1=false;
+PImage albumCover;
+String albumCoverPath;
+String albumCoverPath2;
 //
 void setup() {
   //Display
@@ -76,13 +80,15 @@ void setup() {
 //  String extensionPNG  = ".png";
   String extensionJPG = ".jpg";
   String pathway = "../Images/";
+  String LOLNOOB = ".jfif";
  // String landscape_Square = "Landscape & Square Images/";
  // String portrait = "Portrait/";
  // String backgroundFileName = "Background Image/";
   pathLightBackgroundImage = pathway + New06_Toopy_Binoo + extensionJPG;
  // pathDarkBackgroundImage = pathway + portrait + darthvader + extensionJPG;
-  String albumCoverImagePath = pathway + New06_Toopy_Binoo + extensionJPG;
-  albumCoverImage = loadImage( albumCoverImagePath );
+  albumCoverPath = pathway + New06_Toopy_Binoo + extensionJPG;
+  //albumCoverImage = loadImage( albumCoverImagePath );
+  albumCoverPath2 = pathway +abc123+ LOLNOOB ;
   //
   //Image Aspect Ratio Calculations
   //NOTE: IF-Else & WHILE to Adjust Aspect Ratio Dimensions
@@ -150,6 +156,14 @@ void draw() {
   //Quit Button
   //fill(purple);
   //if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight ) fill(yellow);
+  
+  if (albumCover1== false){
+     albumCover = loadImage (  albumCoverPath  );
+  } else {
+    albumCover = loadImage( albumCoverPath2);
+  }
+  
+  
   fill(purple);
   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
   if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight ) {
@@ -169,13 +183,19 @@ void draw() {
   fill(foregroundColour); //Resetting the Defaults
   //
   //Albumn Cover Image
-  image( albumCoverImage, albumCoverCENTERED, albumCoverY, albumCoverWidthAdjusted, albumCoverHeightAdjusted );
+  image( albumCover, albumCoverCENTERED, albumCoverY, albumCoverWidthAdjusted, albumCoverHeightAdjusted );
   //
   //println(mouseX, mouseY);
   //
 } //End draw
 //
 void keyPressed() { //Listener
+  if (key=='Z' || key=='z'){
+  if(albumCover1==false)
+  ablumCover1=true;
+}else{ 
+  albumCover1=false;
+}
   if (key=='Q' || key=='q')
   {
     soundeffect_1();
