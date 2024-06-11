@@ -80,7 +80,8 @@ void setup() {
 //  String extensionPNG  = ".png";
   String extensionJPG = ".jpg";
   String pathway = "../Images/";
-  String LOLNOOB = ".jfif";
+  String LOLNOOB = ".jpeg";
+  String abc123 = "abc123";
  // String landscape_Square = "Landscape & Square Images/";
  // String portrait = "Portrait/";
  // String backgroundFileName = "Background Image/";
@@ -192,7 +193,7 @@ void draw() {
 void keyPressed() { //Listener
   if (key=='Z' || key=='z'){
   if(albumCover1==false)
-  ablumCover1=true;
+  albumCover1=true;
 }else{ 
   albumCover1=false;
 }
