@@ -30,7 +30,10 @@ Boolean lightMode=false; //Dark mode starts App, null possible if USER Preferenc
 color backgroundColour, darkBackground=0, whiteBackground=255; //Gray Scale, note much smaller than COLOR
 color foregroundColour;
 //
+PImage playButtonSigma;
+String playbuttonPath;
 String pathDarkBackgroundImage, pathLightBackgroundImage;
+PImage pb;
 PImage New06_Toopy_Binoo;
 PImage backgroundImage;
 PImage albumCoverImage;
@@ -77,11 +80,14 @@ void setup() {
 //  String darthvader = "10-star-wars-darth-vader-portrait-wallpaper-1-325x485";
 //  String obiWan = "Obi-wan-star-wars-jedi-23864621-800-600";
 //  String bike = "bike";
-//  String extensionPNG  = ".png";
+ String extensionPNG  = ".png";
   String extensionJPG = ".jpg";
   String pathway = "../Images/";
   String LOLNOOB = ".jpeg";
   String abc123 = "abc123";
+  String pb = "pb";
+  playbuttonPath = pathway+ pb + extensionPNG;
+  playButtonSigma = loadImage ( playbuttonPath);
  // String landscape_Square = "Landscape & Square Images/";
  // String portrait = "Portrait/";
  // String backgroundFileName = "Background Image/";
